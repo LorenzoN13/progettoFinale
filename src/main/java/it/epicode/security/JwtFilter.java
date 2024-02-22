@@ -37,7 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String username = jwtTools.getUsernameFromToken(token);
 
-        Utente utente = utenteService.getUtenteByUsername(username);
+        Utente utente = utenteService.getByUsername(username);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(utente, null);
 
