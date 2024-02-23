@@ -24,18 +24,18 @@ public class PrenotazioneController {
         return DefaultResponse.noMessage(prenotazioneService.cercaTuttilePrenotazioniUtente(pageable), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<DefaultResponse> creazionePrenototazione(@RequestBody @Validated EventoRequest eventoRequest) throws NotFoundException {
-        prenotazioneService.creazionePrenotazione(eventoRequest);
+    @PostMapping("/creazionePrenotazione")
+    public ResponseEntity<DefaultResponse> creazionePrenototazione(@RequestBody @Validated PrenotazioneRequest prenotazioneRequest) throws NotFoundException {
+        prenotazioneService.creazionePrenotazione(prenotazioneRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(DefaultResponse.customMessage("Creato", "Prenotazione effettuata con successo",HttpStatus.CREATED)).getBody();
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<DefaultResponse> getById(@PathVariable int id) throws NotFoundException {
+    @GetMapping("/prenotazioni/{id}")
+    public ResponseEntity<DefaultResponse> cercaPrenotazionePerId(@PathVariable int id) throws NotFoundException {
         return DefaultResponse.customMessage("Trovato",prenotazioneService.cercaPrenotazionetPerId(id),HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<DefaultResponse> delete(@PathVariable int id) throws NotFoundException {
+    @DeleteMapping("/prenotazioni/{id}")
+    public ResponseEntity<DefaultResponse> eliminaPrenotazione(@PathVariable int id) throws NotFoundException {
         prenotazioneService.cancellaPrenotazione(id);
         return DefaultResponse.noObject("Prenotazione con id="+id+" eliminata",HttpStatus.OK);
     }

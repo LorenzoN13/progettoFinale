@@ -16,4 +16,5 @@ public class PrenotazioneRequest {
     private Evento evento;
 
     private Integer idUtente;
+    private Integer idEvento;
 }

@@ -25,5 +25,5 @@ public class EventoRequest {
 
     private Integer idUtente;
 
-    private Integer idEvento;
+
 }

@@ -19,12 +19,12 @@ public class EventoController {
     @Autowired
     private EventoService eventoService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DefaultResponse> getById(@PathVariable int id) throws NotFoundException {
+    @GetMapping("/eventi/{id}")
+    public ResponseEntity<DefaultResponse> cercaEventoPerId(@PathVariable int id) throws NotFoundException {
         return DefaultResponse.customMessage("Trovato",eventoService.cercaEventoPerId(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/creazioneEvento")
     public ResponseEntity<DefaultResponse> crazioneEvento(@RequestBody @Validated EventoRequest eventoRequest, BindingResult bR){
         if(bR.hasErrors()) throw new BadRequestException(bR.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).toList().toString());
 
@@ -38,7 +38,7 @@ public class EventoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DefaultResponse> delete(@PathVariable int id) throws NotFoundException {
+    public ResponseEntity<DefaultResponse> eliminaEvento(@PathVariable int id) throws NotFoundException {
         eventoService.rimuoviEvento(id);
         return DefaultResponse.noObject("Dipendente con id="+id+" eliminato",HttpStatus.OK);
     }

@@ -33,13 +33,13 @@ public class PrenotazioneService {
     private UtenteService utenteService;
 
 
-    public void creazionePrenotazione(EventoRequest eventoRequest)throws NotFoundException, EventFullException{
-        Utente utente = utenteService.cercaUtentePerId(eventoRequest.getIdUtente());
+    public void creazionePrenotazione(PrenotazioneRequest prenotazioneRequest)throws NotFoundException, EventFullException{
+        Utente utente = utenteService.cercaUtentePerId(prenotazioneRequest.getIdUtente());
         if (utente == null) {
             throw new NotFoundException("Utente non trovato con l'ID specificato.");
         }
 
-        Evento evento = eventoService.cercaEventoPerId(eventoRequest.getIdEvento());
+        Evento evento = eventoService.cercaEventoPerId(prenotazioneRequest.getIdEvento());
         if (evento == null) {
             throw new NotFoundException("Evento non trovato con l'ID specificato.");
         }
