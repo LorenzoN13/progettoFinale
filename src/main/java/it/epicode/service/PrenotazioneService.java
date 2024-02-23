@@ -35,7 +35,14 @@ public class PrenotazioneService {
 
     public void creazionePrenotazione(EventoRequest eventoRequest)throws NotFoundException, EventFullException{
         Utente utente = utenteService.cercaUtentePerId(eventoRequest.getIdUtente());
+        if (utente == null) {
+            throw new NotFoundException("Utente non trovato con l'ID specificato.");
+        }
+
         Evento evento = eventoService.cercaEventoPerId(eventoRequest.getIdEvento());
+        if (evento == null) {
+            throw new NotFoundException("Evento non trovato con l'ID specificato.");
+        }
 
         if (evento.getNumeroPostiDisponibili() <= 0) {
             throw new EventFullException("L'evento è pieno");

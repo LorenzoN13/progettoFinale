@@ -60,15 +60,7 @@ public class EventoService {
     }
 
     public void rimuoviEvento(int id) throws UnauthorizedException, NotFoundException {
-         EventoRequest eventoRequest = new EventoRequest();
-
         Evento evento = cercaEventoPerId(id);
-        Utente utente = utenteService.cercaUtentePerId(eventoRequest.getIdUtente());
-
-        if (!utente.getRuolo().equals(Ruolo.ORGANIZZATORE)){
-            throw new UnauthorizedException("Solo gli organizzatori possono eliminare gli eventi.");
-        }
-
 
         eventoRepository.delete(evento);
     }

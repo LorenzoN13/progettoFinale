@@ -25,7 +25,7 @@ public class EventoController {
     }
 
     @PostMapping
-    public ResponseEntity<DefaultResponse> create(@RequestBody @Validated EventoRequest eventoRequest, BindingResult bR){
+    public ResponseEntity<DefaultResponse> crazioneEvento(@RequestBody @Validated EventoRequest eventoRequest, BindingResult bR){
         if(bR.hasErrors()) throw new BadRequestException(bR.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).toList().toString());
 
         return DefaultResponse.customMessage("Creato",eventoService.salvaEvento(eventoRequest),HttpStatus.CREATED);

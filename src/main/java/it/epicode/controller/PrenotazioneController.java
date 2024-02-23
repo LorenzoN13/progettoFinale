@@ -25,7 +25,7 @@ public class PrenotazioneController {
     }
 
     @PostMapping
-    public ResponseEntity<DefaultResponse> create(@RequestBody @Validated EventoRequest eventoRequest) throws NotFoundException {
+    public ResponseEntity<DefaultResponse> creazionePrenototazione(@RequestBody @Validated EventoRequest eventoRequest) throws NotFoundException {
         prenotazioneService.creazionePrenotazione(eventoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(DefaultResponse.customMessage("Creato", "Prenotazione effettuata con successo",HttpStatus.CREATED)).getBody();
     }
